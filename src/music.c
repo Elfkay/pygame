@@ -51,6 +51,10 @@
 #undef _version_
 
 static Mix_Music* current_music = NULL;
+
+static Mix_Music** musics = [NULL] * 8;
+static int current_music_index = 0;
+
 static Mix_Music* queue_music = NULL;
 static int endmusic_event = SDL_NOEVENT;
 static Uint64 music_pos = 0;
@@ -484,6 +488,12 @@ MODINIT_DEFINE (mixer_music)
     }
     cobj = PyCapsule_New (&current_music,
                           "pygame.music_mixer._MUSIC_POINTER", NULL);
+
+    // CW: now increment current_music to point to the next music object
+    musics[current_music_index] = current_music;
+    current_music_index += 1;
+
+
     if (cobj == NULL) {
         DECREF_MOD (module);
         MODINIT_ERROR;

@@ -287,15 +287,15 @@ autoquit(void)
             numchanneldata = 0;
         }
 
-        if (current_music)
-        {
-            if (*current_music)
-            {
-                Mix_FreeMusic (*current_music);
-                *current_music = NULL;
-            }
-            current_music = NULL;
-        }
+        // if (current_music)
+        // {
+        //     if (*current_music)
+        //     {
+        //         Mix_FreeMusic (*current_music);
+        //         *current_music = NULL;
+        //     }
+        //     current_music = NULL;
+        // }
         if (queue_music)
         {
             if (*queue_music)
